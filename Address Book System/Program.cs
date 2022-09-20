@@ -35,11 +35,17 @@ namespace Address_Book_System
 
             addressBook.addContact(firstName, lastName, email, phoneNumber, address, zip, city, state);
 
-            Console.WriteLine("\nIf you want to edit contact plz enter firstName");
+            Console.WriteLine("\nIf you want to edit contact plz enter name");
             string name = Console.ReadLine();
             addressBook.Edit(name);
-        }
-          
-    }
 
+            Console.WriteLine("\nIf you want to delete contact plz enter firstname");
+            string firstname = Console.ReadLine();
+            addressBook.Remove(firstname);
+        }
+    }
 }
+          
+    
+
+

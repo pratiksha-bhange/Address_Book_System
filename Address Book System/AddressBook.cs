@@ -54,5 +54,18 @@ namespace Address_Book_System
             contacts.Add(editContact);
             Console.WriteLine($"Contact of {name} has been edited");
         }
+        public void Remove(string name)
+        {
+            Contact RemoveContact = null;
+            foreach (var contact in contacts)
+            {
+                if (contact.firstName.Contains(name))
+                {
+                    RemoveContact = contact;
+                }
+            }
+            contacts.Remove(RemoveContact);
+            Console.WriteLine($"Contact of {name} has been deleted");
+        }
     }
 }
