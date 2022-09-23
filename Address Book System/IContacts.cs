@@ -6,8 +6,9 @@ namespace Address_Book_System
 {
     interface IContacts
     {
-        public void addContact(string firstName, string lastName, string email, string phoneNumber, string address, string zip, string city, String state);
-        public void Edit(string Name);
-        public void Remove(string name);
+        public void addContact(string firstName, string lastName, string email, string phoneNumber, string address, string zip, string city, string state);
+        public void Edit(string firstName);
+        public void delete(string name);
+        public void displayContact();
     }
 }

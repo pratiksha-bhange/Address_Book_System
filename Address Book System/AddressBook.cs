@@ -1,79 +1,100 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Address_Book_System
 {
     class AddressBook : IContacts
     {
-        List<Contact> contacts = new List<Contact>();
+        public List<Contact> contactList;
 
-        public void addContact(string firstName, string lastName, string email, string phoneNumber, string address, string zip, string city, String state)
+        public AddressBook()
         {
-            contacts.Add(new Contact()
-            {
-                firstName = firstName,
-                lastName = lastName,
-                email = email,
-                phoneNo = phoneNumber,
-                address = address,
-                zip = zip,
-                city = city,
-                state = state,
-            });
-            Console.WriteLine($"Contact of {firstName} has been added");
+            this.contactList = new List<Contact>();
         }
 
-        public void Edit(string name)
+        public void addContact(string firstName, string lastName, string email, string phoneNumber, string address, string zip, string city, string state)
+        {
+            bool duplicate = equals(firstName);
+            if (!duplicate)
+            {
+                Contact contact = new Contact(firstName, lastName, email, phoneNumber, address, zip, city, state);
+                contactList.Add(contact);
+            }
+            else
+            {
+                Console.WriteLine("Cannot add duplicate contacts first name");
+            }
+        }
+
+        private bool equals(string name)
+        {
+            if (this.contactList.Any(e => e.firstName == name))
+                return true;
+            else
+                return false;
+        }
+        public void Edit(string firstName)
         {
             Contact editContact = null;
-            foreach (var contact in contacts)
+
+            foreach (Contact contact in contactList)
             {
-                if (contact.firstName.Contains(name))
+
+
+                if (firstName.Equals(contact.firstName))
                 {
-                    editContact = contact;
+                    editContact = null;
                 }
             }
-
             Console.WriteLine("Plz provide new firstName");
             editContact.firstName = Console.ReadLine();
-
             Console.WriteLine("Plz provide new lastName");
             editContact.lastName = Console.ReadLine();
-
             Console.WriteLine("Plz provide new email");
             editContact.email = Console.ReadLine();
-
             Console.WriteLine("Plz provide new phoneNumber");
-            editContact.phoneNo = Console.ReadLine();
-
+            editContact.phoneNumber = Console.ReadLine();
             Console.WriteLine("Plz provide new address");
             editContact.address = Console.ReadLine();
-
             Console.WriteLine("Plz provide new zip");
             editContact.zip = Console.ReadLine();
-
             Console.WriteLine("Plz provide new city");
             editContact.city = Console.ReadLine();
-
             Console.WriteLine("Plz provide new state");
             editContact.state = Console.ReadLine();
 
-            contacts.Add(editContact);
-            Console.WriteLine($"Contact of {name} has been edited");
+            contactList.Add(editContact);
+            Console.WriteLine($"Contact of {firstName} has been edited");
         }
 
-        public void Remove(string name)
+        public void delete(string name)
         {
             Contact RemoveContact = null;
-            foreach (var contact in contacts)
+            foreach (Contact contact in contactList)
             {
                 if (contact.firstName.Contains(name))
                 {
                     RemoveContact = contact;
                 }
             }
-            contacts.Remove(RemoveContact);
+            contactList.Remove(RemoveContact);
             Console.WriteLine($"Contact of {name} has been deleted");
+        }
+
+        public void displayContact()
+        {
+            foreach (Contact contact in contactList)
+            {
+                Console.WriteLine("\nFirst name = " + contact.firstName);
+                Console.WriteLine("Last name = " + contact.lastName);
+                Console.WriteLine("email = " + contact.email);
+                Console.WriteLine("phoneNumber = " + contact.phoneNumber);
+                Console.WriteLine("Address = " + contact.address);
+                Console.WriteLine("zip = " + contact.zip);
+                Console.WriteLine("city = " + contact.city);
+                Console.WriteLine("state = " + contact.state);
+            }
         }
     }
 }
