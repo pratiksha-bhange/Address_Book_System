@@ -3,12 +3,11 @@ using System.Collections.Generic;
 
 namespace Address_Book_System
 {
-    class AddressBook
+    class AddressBook : IContacts
     {
         List<Contact> contacts = new List<Contact>();
 
-
-        public void addContact(string firstName, string email, string lastName, string phoneNumber,string address,string zip,string city, string state)
+        public void addContact(string firstName, string lastName, string email, string phoneNumber, string address, string zip, string city, String state)
         {
             contacts.Add(new Contact()
             {
@@ -23,6 +22,7 @@ namespace Address_Book_System
             });
             Console.WriteLine($"Contact of {firstName} has been added");
         }
+
         public void Edit(string name)
         {
             Contact editContact = null;
@@ -36,24 +36,32 @@ namespace Address_Book_System
 
             Console.WriteLine("Plz provide new firstName");
             editContact.firstName = Console.ReadLine();
+
             Console.WriteLine("Plz provide new lastName");
             editContact.lastName = Console.ReadLine();
+
             Console.WriteLine("Plz provide new email");
             editContact.email = Console.ReadLine();
+
             Console.WriteLine("Plz provide new phoneNumber");
             editContact.phoneNo = Console.ReadLine();
+
             Console.WriteLine("Plz provide new address");
             editContact.address = Console.ReadLine();
+
             Console.WriteLine("Plz provide new zip");
             editContact.zip = Console.ReadLine();
+
             Console.WriteLine("Plz provide new city");
             editContact.city = Console.ReadLine();
+
             Console.WriteLine("Plz provide new state");
             editContact.state = Console.ReadLine();
 
             contacts.Add(editContact);
             Console.WriteLine($"Contact of {name} has been edited");
         }
+
         public void Remove(string name)
         {
             Contact RemoveContact = null;
