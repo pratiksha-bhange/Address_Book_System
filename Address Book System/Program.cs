@@ -93,7 +93,7 @@ namespace Address_Book_System
                             Environment.Exit(0);
                             break;
                         default:
-                            Console.WriteLine("Enter The Valid Choise");
+                            Console.WriteLine("Enter The Valid Choice");
                             break;
                     }
                 }
@@ -128,8 +128,18 @@ namespace Address_Book_System
 
             Console.WriteLine("Enter state");
             string state = Console.ReadLine();
+            if ((firstName != "") || (lastName != "") || (address != "") || (city != "") || (state != "") || (zip != "") || (email != "") || (phoneNumber != ""))
+            {
+                adressBook.addContact(firstName, lastName, email, phoneNumber, address, zip, city, state);
+            }
+            else
+            {
+                Console.WriteLine("Empty string not allowed \n for add contacts please give the input in string");
+            }
 
-            adressBook.addContact(firstName, lastName, email, phoneNumber, address, zip, city, state);
         }
+
+        
+        
     }
 }

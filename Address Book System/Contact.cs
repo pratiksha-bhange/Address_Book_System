@@ -6,6 +6,7 @@ namespace Address_Book_System
 {
     class Contact
     {
+
         public Contact(string firstName, string lastName, string email, string phoneNumber, string address, string zip, string city, string state)
         {
             this.firstName = firstName;
