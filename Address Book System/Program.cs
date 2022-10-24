@@ -5,11 +5,36 @@ namespace Address_Book_System
 {
     class Program
     {
+        // for add,edit,delete,display contacts of person in both the adress book with the help of dictionary.
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Address Book program");
 
             Dictionary<string, AddressBook> adressBookDictionary = new Dictionary<string, AddressBook>();
+            Dictionary<string, List<string>> cityDisc = new Dictionary<string, List<string>>();
+            Dictionary<string, List<string>> StateDisc = new Dictionary<string, List<string>>();
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("How many adress book you want = ");
+                    int numOfAdressBook = Convert.ToInt32(Console.ReadLine());
+                    for (int i = 1; i <= numOfAdressBook; i++)
+                    {
+                        Console.WriteLine("Enter the name of adress book = " + i + "=");
+                        string adressBookName = Console.ReadLine();
+                        AddressBook adressBook = new AddressBook();
+                        adressBookDictionary.Add(adressBookName, adressBook);
+                    }
+                    break;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Please enter integer number,\n string is not allowes \n enter unique name for book \n duplicate name not allowed");
+                }
+            }
+
             while (true)
             {
                 try
@@ -19,7 +44,7 @@ namespace Address_Book_System
                     {
                         Console.WriteLine(k);
                     }
-                    Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for delete the person,\n 4 for display,\n 5 for search person by Enter city or state,\n 6 for exit");
+                    Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for delete the person,\n 4 for display,\n 5 for Enter city or state ,\n 6 for exit");
                     int choise = Convert.ToInt32(Console.ReadLine());
                     switch (choise)
                     {
@@ -32,7 +57,7 @@ namespace Address_Book_System
                                 int numOfContact = Convert.ToInt32(Console.ReadLine());
                                 for (int i = 1; i <= numOfContact; i++)
                                 {
-                                    TakeInputAndAddToContact(adressBookDictionary[addContactInAdressBook]);
+                                    takeInputAndAddToContact(adressBookDictionary[addContactInAdressBook]);
                                 }
                                 adressBookDictionary[addContactInAdressBook].displayContact();
                             }
@@ -69,7 +94,18 @@ namespace Address_Book_System
                             adressBookDictionary[displayContactInAdressBook].displayContact();
                             break;
                         case 5:
-                            SearchByCityOrState(adressBookDictionary);
+                            Console.WriteLine("Enter 1 for city 2 for state ");
+                            string area = Console.ReadLine();
+                            if (area.Contains("1"))
+                            {
+                                cityDisc = FindByCityOrState(adressBookDictionary, cityDisc);
+                                displayPersonDisc(cityDisc);
+                            }
+                            else
+                            {
+                                StateDisc = FindByCityOrState(adressBookDictionary, StateDisc);
+                                displayPersonDisc(StateDisc);
+                            }
                             break;
                         case 6:
                             Environment.Exit(0);
@@ -86,29 +122,42 @@ namespace Address_Book_System
             }
         }
 
-        public static void SearchByCityOrState(Dictionary<string, AddressBook> adressBookDictionary)
+        public static Dictionary<string, List<string>> FindByCityOrState(Dictionary<string, AddressBook> adressBookDictionary, Dictionary<string, List<string>> areaDisc)
         {
             Console.WriteLine("Enter the city or state where you want to find that person = ");
             string findPlace = Console.ReadLine();
             foreach (var element in adressBookDictionary)
             {
-                List<string> listOfPersonsInPlace = element.Value.SearchPersons(findPlace);
-                if (listOfPersonsInPlace.Count == 0)
+                List<string> listOfPersonsInPlace = element.Value.findPersons(findPlace);
+                foreach (var name in listOfPersonsInPlace)
                 {
-                    Console.WriteLine("No person in that city/state of adress book  = " + element.Key);
-                }
-                else
-                {
-                    Console.WriteLine("The person in that city/state of adress book = " + element.Key + " = ");
-                    foreach (var names in listOfPersonsInPlace)
+                    if (!areaDisc.ContainsKey(findPlace))
                     {
-                        Console.WriteLine(names);
+                        List<string> personList = new List<string>();
+                        personList.Add(name);
+                        areaDisc.Add(findPlace, personList);
                     }
+                    else
+                    {
+                        areaDisc[findPlace].Add(name);
+                    }
+                }
+            }
+            return areaDisc;
+        }
+
+        public static void displayPersonDisc(Dictionary<string, List<string>> areaDisc)
+        {
+            foreach (var index in areaDisc)
+            {
+                foreach (var personName in index.Value)
+                {
+                    Console.WriteLine("personName:-" + personName + "display area:-" + index.Key);
                 }
             }
         }
 
-        public static void TakeInputAndAddToContact(AddressBook adressBook)
+        public static void takeInputAndAddToContact(AddressBook adressBook)
         {
             Console.WriteLine("Enter firstName");
             string firstName = Console.ReadLine();
