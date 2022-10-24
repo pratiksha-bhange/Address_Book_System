@@ -34,14 +34,13 @@ namespace Address_Book_System
             else
                 return false;
         }
+
         public void Edit(string firstName)
         {
             Contact editContact = null;
 
             foreach (Contact contact in contactList)
             {
-
-
                 if (firstName.Equals(contact.firstName))
                 {
                     editContact = contact;
