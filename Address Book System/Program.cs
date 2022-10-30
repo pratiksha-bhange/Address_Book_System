@@ -44,7 +44,7 @@ namespace Address_Book_System
                     {
                         Console.WriteLine(k);
                     }
-                    Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for delete the person,\n 4 for display,\n 5 for Enter city or state ,\n 6 for Sort by first name,\n 7 for Sort by city,\n 8 for Sort by state, \n 9 for Sort by zip,\n 10 for Exit");
+                    Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for delete the person,\n 4 for display,\n 5 for Enter city or state ,\n 6 for Sort by first name,\n 7 for Sort by city,\n 8 for Sort by state, \n 9 for Sort by zip,\n 10 for write in Txt File,\n 11 for Read From Txt File, \n 12 for exit");
                     int choise = Convert.ToInt32(Console.ReadLine());
                     switch (choise)
                     {
@@ -128,6 +128,17 @@ namespace Address_Book_System
                             adressBookDictionary[sortByZipInAdressBook].SortByZip();
                             break;
                         case 10:
+
+                            Console.WriteLine("Enter Adress Book Name To Store/write Contacts = ");
+                            string writeInAddressBook = Console.ReadLine();
+                            adressBookDictionary[writeInAddressBook].writeInTxtFile();
+                            break;
+                        case 11:
+                            Console.WriteLine("Enter Adress Book Name To Store/write Contacts = ");
+                            string ReadAddressBook = Console.ReadLine();
+                            adressBookDictionary[ReadAddressBook].readFromTxtFile();
+                            break;
+                        case 12:
                             Environment.Exit(0);
                             break;
                         default:
@@ -165,57 +176,57 @@ namespace Address_Book_System
                 }
             }
             return areaDisc;
-        }
 
-        // displayPersonDisc for displaying person with area and count the contact.
-        public static void DisplayPersonDisc(Dictionary<string, List<string>> areaDisc)
-        {
-            int count = 0;
-            foreach (var index in areaDisc)
+            // displayPersonDisc for displaying person with area and count the contact.
+            public static void DisplayPersonDisc(Dictionary<string, List<string>> areaDisc)
             {
-                foreach (var personName in index.Value)
+                int count = 0;
+                foreach (var index in areaDisc)
                 {
-                    count++;
-                    Console.WriteLine("personName:-" + personName + "display area:-" + index.Key);
+                    foreach (var personName in index.Value)
+                    {
+                        count++;
+                        Console.WriteLine("personName:-" + personName + "display area:-" + index.Key);
+                    }
                 }
+                Console.WriteLine("count:-" + count);
             }
-            Console.WriteLine("count:-" + count);
-        }
 
-        public static void TakeInputAndAddToContact(AddressBook adressBook)
-        {
-            Console.WriteLine("Enter firstName");
-            string firstName = Console.ReadLine();
-
-            Console.WriteLine("Enter lastName");
-            string lastName = Console.ReadLine();
-
-            Console.WriteLine("Enter email");
-            string email = Console.ReadLine();
-
-            Console.WriteLine("Enter phoneNumber");
-            string phoneNumber = Console.ReadLine();
-
-            Console.WriteLine("Enter address");
-            string address = Console.ReadLine();
-
-            Console.WriteLine("Enter zip");
-            string zip = Console.ReadLine();
-
-            Console.WriteLine("Enter city");
-            string city = Console.ReadLine();
-
-            Console.WriteLine("Enter state");
-            string state = Console.ReadLine();
-
-            if ((firstName != "") || (lastName != "") || (address != "") || (city != "") || (state != "") || (zip != "") || (email != "") || (phoneNumber != ""))
+            public static void TakeInputAndAddToContact(AddressBook adressBook)
             {
-                adressBook.addContact(firstName, lastName, email, phoneNumber, address, zip, city, state);
-            }
-            else
-            {
-                Console.WriteLine("Empty string not allowed \n for add contacts please give the input in string");
+                Console.WriteLine("Enter firstName");
+                string firstName = Console.ReadLine();
+
+                Console.WriteLine("Enter lastName");
+                string lastName = Console.ReadLine();
+
+                Console.WriteLine("Enter email");
+                string email = Console.ReadLine();
+
+                Console.WriteLine("Enter phoneNumber");
+                string phoneNumber = Console.ReadLine();
+
+                Console.WriteLine("Enter address");
+                string address = Console.ReadLine();
+
+                Console.WriteLine("Enter zip");
+                string zip = Console.ReadLine();
+
+                Console.WriteLine("Enter city");
+                string city = Console.ReadLine();
+
+                Console.WriteLine("Enter state");
+                string state = Console.ReadLine();
+
+                if ((firstName != "") || (lastName != "") || (address != "") || (city != "") || (state != "") || (zip != "") || (email != "") || (phoneNumber != ""))
+                {
+                    adressBook.addContact(firstName, lastName, email, phoneNumber, address, zip, city, state);
+                }
+                else
+                {
+                    Console.WriteLine("Empty string not allowed \n for add contacts please give the input in string");
+                }
             }
         }
     }
-}
+    

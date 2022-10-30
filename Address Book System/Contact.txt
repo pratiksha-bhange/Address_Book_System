@@ -1,0 +1,52 @@
+﻿ FirstName = pratu
+ Last Name = bhange
+ Address = jdk
+ City = latur
+ State = maha
+ Zip = 413512
+ Phone Number = 33
+ Email = dd
+
+ FirstName = sima
+ Last Name = mete
+ Address = dd
+ City = pune
+ State = andhra
+ Zip = 1234
+ Phone Number = 3333456
+ Email = ddd
+
+ FirstName = pratu
+ Last Name = bhange
+ Address = jdk
+ City = latur
+ State = maha
+ Zip = 413512
+ Phone Number = 33
+ Email = dd
+
+ FirstName = sima
+ Last Name = mete
+ Address = dd
+ City = pune
+ State = andhra
+ Zip = 1234
+ Phone Number = 3333456
+ Email = ddd
+
+ FirstName = sima
+ Last Name = hudge
+ Address = latur
+ City = pune
+ State = maha
+ Zip = 432
+ Phone Number = 2332223
+ Email = dd
+
+ FirstName = niti
+ Last Name = dd
+ Address = ded
+ City = pune
+ State = kar
+ Zip = 222
+ Phone Number = dd
