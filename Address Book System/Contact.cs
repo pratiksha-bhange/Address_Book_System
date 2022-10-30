@@ -39,7 +39,8 @@ namespace Address_Book_System
         // To the string for return contacts details.
         public override string ToString()
         {
-            return firstName + "\n" + lastName + "\n" + address + "\n" + city + "\n" + state + "\n" + zip + "\n" + phoneNumber + "\n" + email;
+            Console.WriteLine("Contacts After sorting by first name = ");
+            return "\n FirstName = " + firstName + "\n Last Name = " + lastName + "\n Email = " + email + "\n Phone Number = " + phoneNumber + "\n Address = " + address + "\n Zip = " + zip + "\n City = " + city + "\n State = " + state;
         }
     }
 }
