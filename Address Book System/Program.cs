@@ -5,6 +5,7 @@ namespace Address_Book_System
 {
     class Program
     {
+        // for add,edit,delete,display contacts of person in both the adress book with the help of dictionary.
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Address Book program");
@@ -43,7 +44,7 @@ namespace Address_Book_System
                     {
                         Console.WriteLine(k);
                     }
-                    Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for delete the person,\n 4 for display,\n 5 for Enter city or state ,\n 6 for exit");
+                    Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for delete the person,\n 4 for display,\n 5 for Enter city or state ,\n 6 for Sort,\n 7 for Exit");
                     int choise = Convert.ToInt32(Console.ReadLine());
                     switch (choise)
                     {
@@ -56,7 +57,7 @@ namespace Address_Book_System
                                 int numOfContact = Convert.ToInt32(Console.ReadLine());
                                 for (int i = 1; i <= numOfContact; i++)
                                 {
-                                    takeInputAndaddToContact(adressBookDictionary[addContactInAdressBook]);
+                                    TakeInputAndAddToContact(adressBookDictionary[addContactInAdressBook]);
                                 }
                                 adressBookDictionary[addContactInAdressBook].displayContact();
                             }
@@ -98,15 +99,20 @@ namespace Address_Book_System
                             if (area.Contains("1"))
                             {
                                 cityDisc = FindByCityOrState(adressBookDictionary);
-                                displayPersonDisc(cityDisc);
+                                DisplayPersonDisc(cityDisc);
                             }
                             else
                             {
                                 StateDisc = FindByCityOrState(adressBookDictionary);
-                                displayPersonDisc(StateDisc);
+                                DisplayPersonDisc(StateDisc);
                             }
                             break;
                         case 6:
+                            Console.WriteLine("Enter Adress Book Name To Sort Contacts = ");
+                            string sortContactInAddressBook = Console.ReadLine();
+                            adressBookDictionary[sortContactInAddressBook].Sort();
+                            break;
+                        case 7:
                             Environment.Exit(0);
                             break;
                         default:
@@ -128,7 +134,7 @@ namespace Address_Book_System
             string findPlace = Console.ReadLine();
             foreach (var element in adressBookDictionary)
             {
-                List<string> listOfPersonsInPlace = element.Value.findPersons(findPlace);
+                List<string> listOfPersonsInPlace = element.Value.FindPersons(findPlace);
                 foreach (var name in listOfPersonsInPlace)
                 {
                     if (!areaDisc.ContainsKey(findPlace))
@@ -146,7 +152,8 @@ namespace Address_Book_System
             return areaDisc;
         }
 
-        public static void displayPersonDisc(Dictionary<string, List<string>> areaDisc)
+        // displayPersonDisc for displaying person with area and count the contact.
+        public static void DisplayPersonDisc(Dictionary<string, List<string>> areaDisc)
         {
             int count = 0;
             foreach (var index in areaDisc)
@@ -160,7 +167,7 @@ namespace Address_Book_System
             Console.WriteLine("count:-" + count);
         }
 
-        public static void takeInputAndaddToContact(AddressBook adressBook)
+        public static void TakeInputAndAddToContact(AddressBook adressBook)
         {
             Console.WriteLine("Enter firstName");
             string firstName = Console.ReadLine();
