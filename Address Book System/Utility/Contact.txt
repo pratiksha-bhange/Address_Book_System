@@ -1,5 +1,5 @@
- FirstName = poonam
- Last Name = budde
+ FirstName = pratu
+ Last Name = bhange
  Address = jdk
  City = latur
  State = maha
@@ -16,8 +16,8 @@
  Phone Number = 3333456
  Email = ddd
 
- FirstName = poonam
- Last Name = buddde
+ FirstName = pratu
+ Last Name = bhange
  Address = jdk
  City = latur
  State = maha

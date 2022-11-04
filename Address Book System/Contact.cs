@@ -4,88 +4,43 @@ using System.Text;
 
 namespace Address_Book_System
 {
-    public class FileReadWrite
+    public class Contact
     {
-        public static string textFilePath = @"C:\Users\DELL\source\repos\AddressBook\AddressBook\Utility\Contact.txt";
-        public static string csvFilePath = @"C:\Users\DELL\source\repos\AddressBook\AddressBook\Utility\Contact.csv";
+        public string firstName { get; set; }
 
-        // Write into txt file.
-        public static void writeInTxtFile(List<Contact> contacts)
+        public string lastName { get; set; }
+
+        public string email { get; set; }
+
+        public string phoneNumber { get; set; }
+
+        public string address { get; set; }
+
+        public string zip { get; set; }
+
+        public string city { get; set; }
+
+        public string state { get; set; }
+
+
+        // Parameterized constructor initializes a new instance of the contact class.
+        public Contact(string firstName, string lastName, string email, string phoneNumber, string address, string zip, string city, string state)
         {
-            if (File.Exists(textFilePath))
-            {
-                using (StreamWriter streamWriter = File.AppendText(textFilePath))
-                {
-                    foreach (Contact contact in contacts)
-                    {
-                        streamWriter.WriteLine(contact);
-                    }
-                    streamWriter.Close();
-                }
-                Console.WriteLine("SucessFully write into txt file");
-                Console.ReadLine();
-            }
-            else
-            {
-                Console.WriteLine("No File Beacuse Of Wrong Path Or File Name");
-            }
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+            this.phoneNumber = phoneNumber;
+            this.address = address;
+            this.zip = zip;
+            this.city = city;
+            this.state = state;
         }
 
-        // Read from the file txt.
-        public static void readFromTxtFile()
+        // To the string for return contacts details.
+        public override string ToString()
         {
-            if (File.Exists(textFilePath))
-            {
-                using (StreamReader streamReader = File.OpenText(textFilePath))
-                {
-                    string data = "";
-                    while ((data = streamReader.ReadLine()) != null)
-                    {
-                        Console.WriteLine(data);
-                    }
-                    Console.ReadLine();
-                }
-            }
-            else
-            {
-                Console.WriteLine("No File Beacuse Of Wrong Path Or File Name");
-            }
-        }
-
-        // Write into CSV file.
-        public static void writeintoCsvFile(List<Contact> contacts)
-        {
-            if (File.Exists(csvFilePath))
-            {
-                using (StreamWriter streamWriter = File.AppendText(csvFilePath))
-                {
-                    foreach (Contact contact in contacts)
-                    {
-                        streamWriter.WriteLine(contact.firstName + "," + contact.lastName + "," + contact.email + "," + contact.phoneNumber + "," + contact.address + "," + contact.zip + "," + contact.city + "," + contact.state);
-                    }
-                    streamWriter.Close();
-                }
-                Console.WriteLine("SucessFully write into CSV file");
-                Console.ReadLine();
-            }
-            else
-            {
-                Console.WriteLine("No File Beacuse Of Wrong Path Or File Name");
-            }
-        }
-
-        // Read from the CSV file.
-        public static void readFromCSVFile()
-        {
-            string[] csvData = File.ReadAllLines(csvFilePath);
-            foreach (string data in csvData)
-            {
-                string[] csv = data.Split(",");
-                foreach (string dataCsv in csv)
-                {
-                    Console.WriteLine(dataCsv);
-                }
-            }
+            Console.WriteLine("Contacts After sorting by first name = ");
+            return "\n FirstName = " + firstName + "\n Last Name = " + lastName + "\n Email = " + email + "\n Phone Number = " + phoneNumber + "\n Address = " + address + "\n Zip = " + zip + "\n City = " + city + "\n State = " + state;
         }
     }
 }

@@ -187,7 +187,7 @@ namespace Address_Book_System
             return areaDisc;
 
             // displayPersonDisc for displaying person with area and count the contact.
-            public static void DisplayPersonDisc(Dictionary<string, List<string>> areaDisc)
+             public  static void DisplayPersonDisc(Dictionary<string, List<string>> areaDisc)
             {
                 int count = 0;
                 foreach (var index in areaDisc)
@@ -201,7 +201,7 @@ namespace Address_Book_System
                 Console.WriteLine("count:-" + count);
             }
 
-            public static void TakeInputAndAddToContact(AddressBook adressBook)
+           public static void TakeInputAndAddToContact(AddressBook adressBook)
             {
                 Console.WriteLine("Enter firstName");
                 string firstName = Console.ReadLine();
